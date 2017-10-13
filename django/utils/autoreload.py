@@ -108,6 +108,8 @@ def restart_with_reloader():
             return exit_code
 
 def python_reloader(main_func, args, kwargs):
+    sys.executable = os.environ.get('PYTHONEXECUTABLE', sys.executable)
+
     if os.environ.get("RUN_MAIN") == "true":
         thread.start_new_thread(main_func, args, kwargs)
         try:
